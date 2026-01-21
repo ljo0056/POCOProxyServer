@@ -1,0 +1,142 @@
+
+// ChroZenEmulator.cpp : Defines the class behaviors for the application.
+//
+
+#include "pch.h"
+#include "framework.h"
+#include "Emulator.h"
+#include "EmulatorDlg.h"
+
+#include <plog/Custom/WinConsoleAppender.h>
+#include <plog/Custom/OneDayFileAppender.h>
+#include <plog/Appenders/DebugOutputAppender.h>
+
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
+
+
+// EmulatorApp
+
+BEGIN_MESSAGE_MAP(EmulatorApp, CWinApp)
+	ON_COMMAND(ID_HELP, &CWinApp::OnHelp)
+END_MESSAGE_MAP()
+
+
+// EmulatorApp construction
+
+EmulatorApp::EmulatorApp()
+{
+	// TODO: add construction code here,
+	// Place all significant initialization in InitInstance
+}
+
+
+// The one and only EmulatorApp object
+
+EmulatorApp theApp;
+
+
+// EmulatorApp initialization
+
+int EmulatorApp::GetProcessPath(std::string& dest)
+{
+	std::string temp;
+	char path[256] = { 0, };
+	GetModuleFileNameA(NULL, path, 256);
+
+	temp = path;
+	std::string::size_type pos = temp.rfind('\\');
+	if (std::string::npos == pos)
+		return 1;
+
+	dest = temp.substr(0, pos);
+
+	return 0;
+}
+
+BOOL EmulatorApp::InitInstance()
+{
+	// InitCommonControlsEx() is required on Windows XP if an application
+	// manifest specifies use of ComCtl32.dll version 6 or later to enable
+	// visual styles.  Otherwise, any window creation will fail.
+	INITCOMMONCONTROLSEX InitCtrls;
+	InitCtrls.dwSize = sizeof(InitCtrls);
+	// Set this to include all the common control classes you want to use
+	// in your application.
+	InitCtrls.dwICC = ICC_WIN95_CLASSES;
+	InitCommonControlsEx(&InitCtrls);
+
+	CWinApp::InitInstance();
+
+	if (!AfxSocketInit())
+	{
+		AfxMessageBox(IDP_SOCKETS_INIT_FAILED);
+		return FALSE;
+	}
+
+	// Create the shell manager, in case the dialog contains
+	// any shell tree view or shell list view controls.
+	CShellManager *pShellManager = new CShellManager;
+
+	// Activate "Windows Native" visual manager for enabling themes in MFC controls
+	CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerWindows));
+
+	// Standard initialization
+	// If you are not using these features and wish to reduce the size
+	// of your final executable, you should remove from the following
+	// the specific initialization routines you do not need
+	// Change the registry key under which our settings are stored
+	// TODO: You should modify this string to be something appropriate
+	// such as the name of your company or organization
+	SetRegistryKey(_T("Local AppWizard-Generated Applications"));
+
+	plog::Logger<PLOG_DEFAULT_INSTANCE>& logger = plog::init(plog::verbose);
+	{
+		static plog::WinConsoleAppender<plog::TxtFormatter>  console_appender;
+		logger.addAppender(&console_appender);
+
+		std::string log_dir;
+		GetProcessPath(log_dir);
+		log_dir += "\\LOG";
+		static plog::OneDayFileAppender<plog::TxtFormatter>  onedayfile_appender(log_dir.c_str());
+		logger.addAppender(&onedayfile_appender);
+
+		static plog::DebugOutputAppender<plog::TxtFormatter> debugoutput_appender;
+		logger.addAppender(&debugoutput_appender);
+	}
+
+	EmulatorDlg dlg;
+	m_pMainWnd = &dlg;
+	INT_PTR nResponse = dlg.DoModal();
+	if (nResponse == IDOK)
+	{
+		// TODO: Place code here to handle when the dialog is
+		//  dismissed with OK
+	}
+	else if (nResponse == IDCANCEL)
+	{
+		// TODO: Place code here to handle when the dialog is
+		//  dismissed with Cancel
+	}
+	else if (nResponse == -1)
+	{
+		TRACE(traceAppMsg, 0, "Warning: dialog creation failed, so application is terminating unexpectedly.\n");
+		TRACE(traceAppMsg, 0, "Warning: if you are using MFC controls on the dialog, you cannot #define _AFX_NO_MFC_CONTROLS_IN_DIALOGS.\n");
+	}
+
+	// Delete the shell manager created above.
+	if (pShellManager != nullptr)
+	{
+		delete pShellManager;
+	}
+
+#if !defined(_AFXDLL) && !defined(_AFX_NO_MFC_CONTROLS_IN_DIALOGS)
+	ControlBarCleanUp();
+#endif
+
+	// Since the dialog has been closed, return FALSE so that we exit the
+	//  application, rather than start the application's message pump.
+	return FALSE;
+}
+
