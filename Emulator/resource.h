@@ -5,7 +5,6 @@
 #define IDM_ABOUTBOX                    0x0010
 #define IDD_ABOUTBOX                    100
 #define IDS_ABOUTBOX                    101
-#define IDD_CHROZENEMULATOR_DIALOG      102
 #define IDD_DIALOG                      102
 #define IDP_SOCKETS_INIT_FAILED         103
 #define IDR_MAINFRAME                   128
@@ -13,15 +12,12 @@
 #define IDC_BUTTON1                     1000
 #define IDC_STATE                       1005
 #define IDC_ERROR                       1006
-#define IDC_TEMP_CAP                    1007
 #define IDC_ACTIVATE                    1007
 #define IDC_FRONT_ACTIVATE              1007
-#define IDC_TEMP_CAP2                   1008
 #define IDC_EDIT_PORT                   1008
 #define IDC_EDIT_FRONT_PORT             1008
 #define IDC_CHECK1                      1009
 #define IDC_EDIT_BACK_PORT              1009
-#define IDC_TEMP_CAP3                   1010
 #define IDC_VIAL                        1010
 #define IDC_ACTIVATE2                   1010
 #define IDC_BACK_ACTIVATE               1010

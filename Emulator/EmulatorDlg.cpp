@@ -53,7 +53,7 @@ END_MESSAGE_MAP()
 
 
 EmulatorDlg::EmulatorDlg(CWnd* pParent /*=nullptr*/)
-	: CDialogEx(IDD_CHROZENEMULATOR_DIALOG, pParent)
+	: CDialogEx(IDD_DIALOG, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
