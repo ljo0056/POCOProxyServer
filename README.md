@@ -3,7 +3,7 @@
 [Front Clinet] <-- TCP/IP --> POCOProxyServer <-- TCP/IP --> [Back Server]
 
 # IDE
-Visual Studio 2019 MFC
+Visual Studio 2022 MFC
 
 # Reference Library
 plog
