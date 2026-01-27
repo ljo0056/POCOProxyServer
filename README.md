@@ -6,11 +6,11 @@
 Visual Studio 2019 MFC
 
 # Reference Library
-plog (version 1.1.4)
+plog
 https://github.com/SergiusTheBest/plog
 
-fmt (version 6.2.0)
+fmt
 https://github.com/fmtlib/fmt
 
-POCO (version 1.11.1)
+POCO
 https://github.com/pocoproject/poco
