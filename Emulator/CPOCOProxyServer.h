@@ -1,6 +1,7 @@
 #pragma once
 #include <thread>
 #include <memory>
+#include <functional>
 
 class CPOCOProxyAcceptor;
 

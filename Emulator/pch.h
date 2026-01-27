@@ -15,10 +15,12 @@
 #include <plog/Custom/LogAFL.h>
 
 // fmt
-// fmt::sprintf 을 쓰기 위해서는 #include <string> 을 선언해야 한다.
-#pragma warning (disable:4566)
+// fmt/color.h(1,1) and fmt/chrono.h : warning C4819: The file contains a character that cannot be represented in the current code page (949)
+#pragma warning (disable:4819) 
+#define FMT_UNICODE 0
 #define FMT_HEADER_ONLY
-#include <fmt/format.h>
-#include <fmt/printf.h>
+#include <fmt/base.h>
+#include <fmt/xchar.h>
+#pragma warning (default:4819)
 
 #endif //PCH_H

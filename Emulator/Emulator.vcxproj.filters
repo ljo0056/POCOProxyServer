@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{626268d6-5b10-4558-aa33-31674c3242ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Emulator.h">
@@ -39,6 +42,21 @@
     <ClInclude Include="CPOCOProxyServer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SettingIni.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\InnerThread.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\Util.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\UtilWnd.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\WinIniParser.h">
+      <Filter>common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Emulator.cpp">
@@ -52,6 +70,21 @@
     </ClCompile>
     <ClCompile Include="CPOCOProxyServer.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingIni.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\InnerThread.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\Util.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\UtilWnd.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\WinIniParser.cpp">
+      <Filter>common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
